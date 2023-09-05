@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return inertia("Sample");
 });
+
+Route::post('/sample', \App\Http\Controllers\Sample::class)->middleware([HandlePrecognitiveRequests::class]);
