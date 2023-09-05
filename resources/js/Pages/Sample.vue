@@ -1,9 +1,9 @@
 <template>
-        <form @submit.prevent="form.submit()">
+        <form @submit.prevent="submit">
             <input
                 :value="this.form.name"
                 @input="this.form.name = $event.target.value"
-                @change="this.form.validate('name')"
+                @change="submit"
             >
             <p>
                 {{ this.form.errors.name }}
@@ -30,5 +30,19 @@ export default defineComponent({
             })
         }
     },
+    methods: {
+        submit() {
+            this.form.transform( () => {
+                return {
+                    name: "this is validate",
+                }
+            }).validate('name')
+            this.form.transform( () => {
+                return {
+                    name: "this is submit",
+                }
+            }).submit();
+        }
+    }
 })
 </script>
